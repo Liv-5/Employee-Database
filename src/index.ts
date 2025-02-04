@@ -37,7 +37,7 @@ async function addEmployee() {
 
   try {
     await pool.query(
-      "INSERT INTO employee (employee_first_name, employee_last_name) VALUES ($1, $2, $3)",
+      "INSERT INTO employee (employee_first_name, employee_last_name, role_id) VALUES ($1, $2, $3)",
       [firstName, lastName, roleId]
     );
     console.log(`Success! ${firstName} ${lastName} was added.`);
@@ -140,7 +140,7 @@ async function addRole() {
 
   try {
     await pool.query(
-      "INSERT INTO role (role_title, role_salary) VALUES ($1, $2, $3)",
+      "INSERT INTO role (role_title, role_salary, department_id) VALUES ($1, $2, $3)",
       [title, salary, departmentId]
     );
     console.log(
