@@ -23,7 +23,7 @@ View and navigate through the employee database in the command line or terminal 
 
 ## Video walk-through
 
-[Employee Database video walk-through]()
+[Employee Database video walk-through](https://drive.google.com/file/d/1CD9HGr5VwAzfSsp_g3d-nUSvb2OEFK6k/view)
 
 ## Preview
 
