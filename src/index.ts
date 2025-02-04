@@ -14,7 +14,7 @@ async function viewAllEmployees() {
 }
 
 async function addEmployee() {
-  const { firstName, lastName } = await inquirer.prompt([
+  const { firstName, lastName, roleId } = await inquirer.prompt([
     {
       type: "input",
       name: "firstName",
@@ -27,12 +27,18 @@ async function addEmployee() {
       message: "Enter employees last name.",
       validate: (input) => input.trim() !== "" || "Last name cannot be empty.",
     },
+    {
+      type: "input",
+      name: "roleId",
+      message: "Enter employee's role ID.",
+      validate: (input) => !isNaN(input) || "Role ID must be a number.",
+    },
   ]);
 
   try {
     await pool.query(
-      "INSERT INTO employee (employee_first_name, employee_last_name) VALUES ($1, $2)",
-      [firstName, lastName]
+      "INSERT INTO employee (employee_first_name, employee_last_name) VALUES ($1, $2, $3)",
+      [firstName, lastName, roleId]
     );
     console.log(`Success! ${firstName} ${lastName} was added.`);
   } catch {
@@ -111,7 +117,7 @@ async function viewAllRoles() {
 }
 
 async function addRole() {
-  const { title, salary } = await inquirer.prompt([
+  const { title, salary, departmentId } = await inquirer.prompt([
     {
       type: "input",
       name: "title",
@@ -124,12 +130,18 @@ async function addRole() {
       message: "Enter new role salary.",
       validate: (input) => input.trim() !== "" || "Salary cannot be empty.",
     },
+    {
+      type: "input",
+      name: "departmentId",
+      message: "Enter the department ID for this role.",
+      validate: (input) => !isNaN(input) || "Department ID must be a number.",
+    },
   ]);
 
   try {
     await pool.query(
-      "INSERT INTO role (role_title, role_salary) VALUES ($1, $2)",
-      [title, salary]
+      "INSERT INTO role (role_title, role_salary) VALUES ($1, $2, $3)",
+      [title, salary, departmentId]
     );
     console.log(
       `Success! New role ${title} with salary of ${salary} was added`
